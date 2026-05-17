@@ -16,15 +16,19 @@ ln -sf "$SCRIPT_DIR/pi/agent/settings.json"  "$HOME/.pi/agent/settings.json"
 ln -sf "$SCRIPT_DIR/pi/agent/presets.json"    "$HOME/.pi/agent/presets.json"
 ln -sf "$SCRIPT_DIR/pi/agent/keybindings.json" "$HOME/.pi/agent/keybindings.json"
 
-# Extensions (real files so pi can import them)
+# Extensions
 for f in "$SCRIPT_DIR"/pi/agent/extensions/*.ts; do
   ln -sf "$f" "$HOME/.pi/agent/extensions/$(basename "$f")"
 done
 
+# Skills
+for d in "$SCRIPT_DIR"/pi/agent/skills/*/; do
+  skill_name="$(basename "$d")"
+  ln -sf "$d" "$HOME/.pi/agent/skills/$skill_name"
+done
+
 echo ""
 echo "✅ Done. Configs linked into ~/"
-echo "   tmux  → ~/.tmux.conf"
-echo "   pi    → ~/.pi/agent/"
-echo ""
-echo "⚠️  Skills are NOT included in this repo (they're installed via pi)."
-echo "   Install them separately on the new machine."
+echo "   tmux   → ~/.tmux.conf"
+echo "   pi     → ~/.pi/agent/"
+echo "   skills → ~/.pi/agent/skills/"

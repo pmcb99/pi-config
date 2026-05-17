@@ -14,6 +14,7 @@ pi/agent/
     blink-cursor.ts    # blinking cursor while pi runs
     read-quiet.ts      # quieter read tool rendering
     model-switcher.ts  # type mm1/mm2 to quick-switch models
+  skills/              # all installed skills
 
 tmux/
   tmux.conf           # vim-style pane nav, mouse support, alt window nav
@@ -29,7 +30,3 @@ cd pi-config
 chmod +x setup.sh
 ./setup.sh
 ```
-
-## Skills
-
-Skills are not included — install them via pi on each machine.

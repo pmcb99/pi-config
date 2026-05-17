@@ -1,0 +1,16 @@
+# Applied for every zsh invocation (including Ghostty-launched sessions).
+#
+# Purpose:
+# - If the terminal restores an unreadable CWD, Homebrew can fail with:
+#   "The current working directory must be readable to paulmcbrien to run brew."
+# - Some tools can fail with a low file-descriptor limit unless the soft
+#   ulimit -n is raised for the shell that launches them.
+
+# If PWD isn't readable (e.g. Ghostty restored a deleted/restricted directory),
+# fall back to a known-readable directory so brew works.
+if [[ -n "${PWD:-}" && -d "${PWD}" && ! -r "${PWD}" ]]; then
+  cd "$HOME" 2>/dev/null || true
+fi
+
+# Raise the per-process soft file-descriptor limit.
+ulimit -n 1048575 2>/dev/null || true

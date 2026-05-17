@@ -1,0 +1,40 @@
+# SSH
+# alias p1="ssh admin@YOUR_VPS_IP"
+# alias d1="ssh user@YOUR_SERVER_IP"
+
+alias c="clear"
+
+# Bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Android SDK
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Java/OpenJDK
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+
+. "$HOME/.local/bin/env"
+
+# Secrets (API keys etc) — not tracked in git
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# BACKUP
+# alias backup="zsh $HOME/Desktop/BACKUP.sh"
+
+# Local bin
+if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
+  export PATH="$HOME/bin:$PATH"
+fi
+
+# Shovelstone encrypt/decrypt
+alias encrypt="shovelstone-crypto encrypt"
+alias decrypt="shovelstone-crypto decrypt"
+
+# Default claude to skip permission prompts
+alias claude="claude --dangerously-skip-permissions"

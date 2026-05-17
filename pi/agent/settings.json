@@ -1,0 +1,14 @@
+{
+  "lastChangelogVersion": "0.74.1",
+  "defaultProvider": "zai",
+  "defaultModel": "glm-5.1",
+  "defaultThinkingLevel": "medium",
+  "enabledModels": [
+    "zai/glm-5.1:medium",
+    "openai-codex/gpt-5.5:low"
+  ],
+  "packages": [
+    "npm:@tmustier/pi-files-widget"
+  ],
+  "steeringMode": "all"
+}

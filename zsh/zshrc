@@ -38,3 +38,26 @@ alias decrypt="shovelstone-crypto decrypt"
 
 # Default claude to skip permission prompts
 alias claude="claude --dangerously-skip-permissions"
+
+_tmux_status_color_for_pwd() {
+  [[ -z "$TMUX" ]] && return
+
+  local tmux_bin="${commands[tmux]:-/opt/homebrew/bin/tmux}"
+  [[ -x "$tmux_bin" ]] || return
+
+  case "$PWD/" in
+    "$HOME"/Documents/SHOVELSTONE/BOOK/tanstack/*)
+      "$tmux_bin" set-option -q status-style bg=red,fg=black
+      ;;
+    "$HOME"/Documents/SHOVELSTONE/nativewind/jiffy/*)
+      "$tmux_bin" set-option -q status-style bg=blue,fg=black
+      ;;
+    *)
+      "$tmux_bin" set-option -q status-style bg=green,fg=black
+      ;;
+  esac
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _tmux_status_color_for_pwd
+add-zsh-hook precmd _tmux_status_color_for_pwd
